@@ -1,0 +1,31 @@
+<div class="chart-container">
+    <h2>Decorator Statistics</h2>
+  
+    <div class="chart">
+      <h3>Jobs per Month For Me</h3>
+      <canvas baseChart
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [type]="barChartType">
+      </canvas>
+    </div>
+
+    <div class="chart">
+      <h3>Job Distribution Among Decorators In My Company</h3>
+      <canvas baseChart
+              [data]="pieChartData"
+              [options]="pieChartOptions"
+              [type]="pieChartType">
+      </canvas>
+    </div>
+  
+    <div class="chart">
+      <h3>Average Jobs by Day of the Week per Month in last 24 Months</h3>
+      <canvas baseChart
+              [data]="histogramData"
+              [options]="histogramOptions"
+              [type]="histogramType">
+      </canvas>
+    </div>
+  </div>
+  

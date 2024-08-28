@@ -1,0 +1,105 @@
+<div class="main-menu">
+    <button (click)="toggleCurrentBookings()">Current Bookings</button>
+    <button (click)="togglePastBookings()">Past Bookings (Archive)</button>
+</div>
+
+  <div *ngIf="showCurrentBookings && currentBookings.length == 0">
+    <span>No current bookings!</span>
+  </div>
+  
+  <div *ngIf="showCurrentBookings && currentBookings.length > 0">
+    <h3>Current Bookings</h3>
+    <table>
+      <thead>
+        <tr>
+            <th>Booking Date</th>
+            <th>Realisation Date</th>
+            <th>Company</th>
+            <th>Requested Services</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of currentBookings; let i = index">
+            <td>{{ booking.bookingDatetime | date }}</td>
+            <td>{{ booking.realisationDate | date }}</td>
+            <td>{{ currentCompanyNames[i] }}</td>
+            <td>
+                <ul>
+                    <li *ngFor="let service of currentServices[i]">{{service}}</li>
+                </ul>
+            </td>
+            <td>
+                <button *ngIf="booking.status != 'CANCELED' && canCancelBooking(booking)" (click)="cancelBooking(i)">Cancel</button>
+                <span *ngIf="booking.status == 'CANCELED'">Already canceled</span>
+                <span *ngIf="booking.status != 'CANCELED' && !canCancelBooking(booking)">Can't cancel</span>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="showPastBookings && pastBookings.length == 0">
+    <span>No past bookings!</span>
+  </div>
+  
+  <div *ngIf="showPastBookings && pastBookings.length > 0">
+    <h3>Past Bookings (Archive)</h3>
+    <table>
+      <thead>
+        <tr>
+            <th>Realisation Date</th>
+            <th>Company</th>
+            <th>Rating</th>
+            <th>Comment</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of pastBookings; let i = index">
+            <td>{{ booking.realisationDate | date }}</td>
+            <td>{{ pastCompanyNames[i] }}</td>
+            <td *ngIf="editingIndex !== i">
+                <div *ngIf="booking.rating && booking.rating > 0">
+                    <div class="stars">
+                        <span class="star" [class.filled]="booking.rating >= 1">&#9733;</span>
+                        <span class="star" [class.filled]="booking.rating >= 2">&#9733;</span>
+                        <span class="star" [class.filled]="booking.rating >= 3">&#9733;</span>
+                        <span class="star" [class.filled]="booking.rating >= 4">&#9733;</span>
+                        <span class="star" [class.filled]="booking.rating >= 5">&#9733;</span>
+                    </div>
+                </div>
+                <span *ngIf="!booking.rating || booking.rating == 0">Not Rated</span>
+            </td>
+            <td *ngIf="editingIndex == i">
+                <div class="stars">
+                    <span 
+                      *ngFor="let star of stars; let starIndex = index" 
+                      (click)="selectRating(i, starIndex + 1)"
+                      [ngClass]="{'filled': booking.rating && starIndex < booking.rating}"
+                      class="star">
+                      &#9733;
+                    </span>
+                </div>
+            </td>
+            <td *ngIf="editingIndex != i">
+                {{ booking.comment || 'No comment' }}
+            </td>
+            <td *ngIf="editingIndex == i">
+                <input type="text" [(ngModel)]="booking.comment" placeholder="Add your comment" />
+            </td>
+            <td>{{ booking.status }}</td>
+            <td>
+                <button *ngIf="booking.status == 'COMPLETED' && (editingIndex !== i && (!booking.rating || booking.rating === 0))" (click)="editBooking(i)">Add Rating & Comment</button>
+                <button *ngIf="editingIndex === i" (click)="addRating(i)">Save</button>
+                <button *ngIf="editingIndex === i" (click)="cancelEdit()">Cancel</button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+
+  
+  

@@ -1,0 +1,61 @@
+<div class="main-menu">
+    <button (click)="toggleCompletedJobs()">Completed Jobs</button>
+    <button (click)="toggleServicingJobs()">Jobs Under Servicing</button>
+</div>
+
+<div *ngIf="showCompletedJobs && completedJobs.length === 0">
+    <span>No completed jobs!</span>
+</div>
+
+<div *ngIf="showCompletedJobs && completedJobs.length > 0">
+    <h3>Completed Jobs</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Completion Date</th>
+                <th>Number of Pools</th>
+                <th>Number of Fountains</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let job of completedJobs; let i = index">
+                <td>{{ job.realisationDate | date }}</td>
+                <td>{{ numberOfPools(job) }}</td>
+                <td>{{ numberOfFountains(job) }}</td>
+                <td>
+                    <button *ngIf="canScheduleServicing(job)" (click)="bookServicing(job)">Schedule Servicing</button>
+                    <span *ngIf="!canScheduleServicing(job)">Servicing Not Needed</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="showServicingJobs && servicingJobs.length === 0">
+    <span>No jobs currently under servicing!</span>
+</div>
+
+<div *ngIf="showServicingJobs && servicingJobs.length > 0">
+    <h3>Jobs Under Servicing</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Completion Date</th>
+                <th>Number of Pools</th>
+                <th>Number of Fountains</th>
+                <th>Servicing Status</th>
+                <th>Finishing Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let job of servicingJobs">
+                <td>{{ job.realisationDate | date}}</td>
+                <td>{{ numberOfPools(job) }}</td>
+                <td>{{ numberOfFountains(job) }}</td>
+                <td>{{ job.servicingStatus }}</td>
+                <td>{{ job.lastServicingDate | date }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

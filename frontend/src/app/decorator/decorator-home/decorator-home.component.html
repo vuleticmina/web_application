@@ -1,0 +1,13 @@
+<div class="home">
+    <h2>Welcome, {{user.firstName}}!</h2>
+    <ul class="menu">
+      <li><a (click)="navigateTo('profile')">Profile</a></li>
+      <li><a (click)="navigateTo('appointments')">Appointments</a></li>
+      <li><a (click)="navigateTo('servicing')">Servicing</a></li>
+      <li><a (click)="navigateTo('statistics')">Statistics</a></li>
+    </ul>
+    <div class="content">
+      <router-outlet></router-outlet> 
+    </div>
+  </div>
+

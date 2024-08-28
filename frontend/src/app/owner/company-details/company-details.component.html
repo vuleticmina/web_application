@@ -1,0 +1,78 @@
+<div *ngIf="company" class="company-details">
+    <h2 class="company-title">{{ company.name }}</h2>
+
+    <div class="address-info">
+        <p class="title">Address:</p>
+        <p>{{ company.address }}</p>
+      </div>
+    
+    <div class="services-section">
+      <h3 class="title">Services:</h3>
+      <table class="services-table">
+        <thead>
+          <tr>
+            <th>Service Name</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let service of services">
+            <td>{{ service.serviceName }}</td>
+            <td>{{ service.description }}</td>
+            <td>{{ service.price | currency }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="!services" class="no-services">No Services Available.</p>
+    </div>
+    
+    <div *ngIf="contact" class="contact-info">
+      <p class="title">Contact:</p>
+      <p>{{ contact.person }} <a [href]="'tel:' + contact.phone" class="contact-phone">{{ contact.phone }}</a></p>
+    </div>
+  
+    <div class="map-container">
+      <p class="title">Map:</p>
+      <app-map [lat]="lat" [lng]="lng" [allowSelection]="false"></app-map>
+    </div>
+
+    <div class="ratings-section">
+      <h3 class="title">Ratings:</h3>
+      <table class="ratings-table">
+        <thead>
+          <tr>
+            <th>Comment</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rating of ratings">
+            <td>{{ rating.comment }}</td>
+            <td>
+              <div class="star-rating">
+              <span class="star" [class.full]="rating.rating >= 1">&#9733;</span>
+              <span class="star" [class.full]="rating.rating >= 2">&#9733;</span>
+              <span class="star" [class.full]="rating.rating >= 3">&#9733;</span>
+              <span class="star" [class.full]="rating.rating >= 4">&#9733;</span>
+              <span class="star" [class.full]="rating.rating >= 5">&#9733;</span>
+              </div>
+              {{ rating.rating }}
+          </td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="!services" class="no-services">No Services Available.</p>
+    </div>
+
+    <div class="button-section">
+      <button (click)="makeReservation()">Make Reservation</button>
+    </div>
+  </div>
+
+  
+  
+  <div *ngIf="!company" class="no-company">
+    <p class="no-company-message">Company not found.</p>
+  </div>
+  

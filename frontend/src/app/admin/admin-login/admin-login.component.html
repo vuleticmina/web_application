@@ -1,0 +1,12 @@
+<form>
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" [(ngModel)]="username">
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" [(ngModel)]="password">
+    <button (click)="login()">Login</button>
+    <p class="error">{{loginError}}</p>
+    <div class="additional-options">
+        <p>Don't have an account? <a routerLink="/register">Register</a></p>
+        <p><a routerLink="/change-password">Change password</a></p>
+    </div>
+</form>

@@ -1,0 +1,21 @@
+<span class="error">{{ errorMessage}}</span>
+<div class="canvas-container">
+    <canvas #canvasElement
+            width="800" height="600"
+            (mousedown)="onMouseDown($event)"
+            (mousemove)="onMouseMove($event)"
+            (mouseup)="onMouseUp($event)"
+            (mouseleave)="onMouseLeave($event)">
+    </canvas>
+</div>
+
+<div class="controls">
+    <button (click)="drawGreenery()">Add Greenery</button>
+    <button *ngIf="type == 'private'" (click)="drawPool()">Add Pool</button>
+    <button *ngIf="type == 'restaurant'" (click)="drawFountain()">Add Fountain</button>
+    <button *ngIf="type == 'restaurant'"  (click)="drawTable()">Add Table</button>
+    <button *ngIf="type == 'restaurant'"  (click)="drawChair()">Add Chair</button>
+    <button (click)="saveLayout()">Save Layout</button>
+    <button (click)="loadLayout()">Load Layout</button>
+    <input type="file" (change)="onFileSelected($event)"/>
+</div>

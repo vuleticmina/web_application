@@ -1,0 +1,124 @@
+.company-details {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  .company-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+  }
+  
+  .company-info {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .services-section {
+    margin-bottom: 20px;
+  }
+  
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .contact-info {
+    margin-bottom: 20px;
+  }
+  
+  .contact-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .address-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .contact-phone {
+    color: #1c7041;
+    text-decoration: none;
+  }
+  
+  .contact-phone:hover {
+    text-decoration: underline;
+  }
+  
+  .no-services {
+    font-size: 16px;
+    color: #ff4d4d;
+    font-style: italic;
+  }
+  
+  .map-container {
+    margin-top: 20px;
+  }
+  
+  .map-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .no-company {
+    padding: 20px;
+    background-color: #fff3f3;
+    border: 1px solid #ff4d4d;
+    border-radius: 8px;
+    color: #ff4d4d;
+    text-align: center;
+  }
+  
+  .no-company-message {
+    font-size: 18px;
+  }
+  
+  .star-rating {
+    display: inline-block;
+    font-size: 1.2rem;
+  }
+  
+  .star {
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+ .full {
+    color: #fdd835; 
+  }

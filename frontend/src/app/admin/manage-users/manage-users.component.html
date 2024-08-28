@@ -1,0 +1,80 @@
+<div class="manage-users">
+    <h2>Manage Users</h2>
+  
+    <div class="users" *ngIf="users && users.length > 0">
+      <span class="error">{{errorMessage}}</span>
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Registration Status</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Credit card</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; let i = index">
+            <td>{{ user.username }}</td>
+            <td *ngIf="!isEditing(i)">{{ user.email }}</td>
+            <td *ngIf="isEditing(i)">
+                <input [(ngModel)]="editedUsers[i].email" />
+            </td>
+            <td *ngIf="!isEditing(i)">{{ user.role }}</td>
+            <td *ngIf="isEditing(i)">
+              <input [(ngModel)]="editedUsers[i].role" />
+            </td>
+            <td *ngIf="!isEditing(i)">{{ user.registrationStatus }}</td>
+            <td *ngIf="isEditing(i)">
+              <input [(ngModel)]="editedUsers[i].registrationStatus" />
+            </td>
+            <td *ngIf="!isEditing(i)">{{ user.firstName }}</td>
+            <td *ngIf="isEditing(i)">
+              <input [(ngModel)]="editedUsers[i].firstName" />
+            </td>
+            <td *ngIf="!isEditing(i)">{{ user.lastName }}</td>
+            <td *ngIf="isEditing(i)">
+              <input [(ngModel)]="editedUsers[i].lastName" />
+            </td>
+            <td *ngIf="!isEditing(i)">{{ user.address }}</td>
+            <td *ngIf="isEditing(i)">
+              <input [(ngModel)]="editedUsers[i].address" />
+            </td>
+            <td *ngIf="!isEditing(i)">{{ user.phone }}</td>
+            <td *ngIf="isEditing(i)">
+              <input [(ngModel)]="editedUsers[i].phone" />
+            </td>
+            <td *ngIf="!isEditing(i)">{{ user.creditCardNumber }}</td>
+            <td *ngIf="isEditing(i)">
+              <input [(ngModel)]="editedUsers[i].creditCardNumber" />
+            </td>
+            <td class="button-container">
+              <button *ngIf="!isEditing(i)" (click)="editUser(i)">Edit</button>
+              <button *ngIf="!isEditing(i) && user.registrationStatus != 'INACTIVE'" (click)="deactivateUser(i)">Deactivate</button>
+              <button *ngIf="!isEditing(i) && user.registrationStatus == 'INACTIVE'" (click)="reactivateUser(i)">Reactivate</button>
+              <button *ngIf="isEditing(i)" (click)="saveUser(i)">Save</button>
+              <button *ngIf="isEditing(i)" (click)="cancelEdit(i)">Cancel</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="users && users.length === 0">
+      <p>No users found.</p>
+    </div>
+  
+    <div *ngIf="loading">
+      <p>Loading users...</p>
+    </div>
+  
+    <div *ngIf="error">
+      <p>Error loading users. Please try again later.</p>
+    </div>
+  </div>
+  

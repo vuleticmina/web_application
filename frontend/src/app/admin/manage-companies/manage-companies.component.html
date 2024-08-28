@@ -1,0 +1,57 @@
+<div class="manage-companies">
+    <h2>Manage Companies</h2>
+    <div class="companies" *ngIf="companies && companies.length > 0">
+      <table class="companies-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Contect Person</th>
+            <th>Map Location</th>
+            <th>Services</th>
+            <th>Vacations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let company of companies; let i = index">
+            <td>{{ company.name }}</td>
+            <td>{{ company.address }}</td>
+            <td>{{ contact[i].person}} {{contact[i].phone}}</td>
+            <td>{{ company.mapLocation}}</td>
+            <td>
+                <table>
+                    <tr *ngFor="let service of services[i]">
+                        <td>{{service.serviceName}}</td>
+                        <td>{{service.description}}</td>
+                        <td>{{service.price}}</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr *ngFor="let vacation of vacations[i]">
+                        <td>{{vacation.start}}</td>
+                        <td>{{vacation.end}}</td>
+                    </tr>
+                </table>
+            </td>
+        
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div *ngIf="companies && companies.length === 0">
+      <p>No company found.</p>
+    </div>
+  
+    <div *ngIf="loading">
+      <p>Loading companies...</p>
+    </div>
+  
+    <div *ngIf="error">
+      <p>Error loading companies. Please try again later.</p>
+    </div>
+  </div>
+  
+

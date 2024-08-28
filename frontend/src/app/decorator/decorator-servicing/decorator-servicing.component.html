@@ -1,0 +1,30 @@
+<h3>Maintenance Requests</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Completion Date</th>
+      <th>Number of Pools</th>
+      <th>Number of Fountains</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let request of servicingRequests">
+        <td>{{ request.realisationDate | date}}</td>
+        <td>{{ numberOfPools(request) }}</td>
+        <td>{{ numberOfFountains(request) }}</td>
+      <td>
+        <button (click)="confirmRequest(request)"> Confirm </button>
+        <button (click)="rejectRequest(request)"> Reject </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="selectedRequest">
+  <h3>Confirm Servicing Request</h3>
+  <label for="estimatedCompletion">Estimated Completion Date and Time:</label>
+  <input type="datetime-local" id="estimatedCompletion" [(ngModel)]="estimatedCompletion" />
+  <button (click)="submitConfirmation()">Submit</button>
+  <button (click)="cancelConfirmation()">Cancel</button>
+</div>

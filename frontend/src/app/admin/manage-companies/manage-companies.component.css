@@ -1,0 +1,42 @@
+.manage-companies {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .companies {
+    width: 100%;
+    max-width: 800px; 
+    padding: 10px;
+    box-sizing: border-box; 
+    border: 1px solid #ccc;
+    background-color: #fff;
+    overflow: auto; 
+  }
+  
+  .companies-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .companies-table th, .companies-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .companies-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .companies-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .companies-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+
+  

@@ -1,0 +1,82 @@
+<div class="main-menu">
+  <button (click)="togglePendingBookings()">Pending Bookings</button>
+  <button (click)="toggleMyBookings()">My Bookings</button>
+</div>
+
+<span class="error">{{ errorMessage }}</span>
+
+<div *ngIf="showPendingBookings && bookings.length == 0">
+  <span>No pending bookings!</span>
+</div>
+
+<div *ngIf="showPendingBookings && bookings.length > 0">
+  <h3>Pending Bookings</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Booking Date</th>
+        <th>Realisation Date</th>
+        <th>Garden Type</th>
+        <th>Area</th>
+        <th>Requested Services</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of bookings; let i = index">
+        <td>{{ booking.bookingDatetime | date }}</td>
+        <td>{{ booking.realisationDate | date }}</td>
+        <td>{{ booking.type }}</td>
+        <td>{{ booking.area }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let service of services[i]">{{ service }}</li>
+          </ul>
+        </td>
+        <td>
+          <button (click)="acceptBooking(i)">Accept</button>
+          <button (click)="rejectBooking(i)">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="showMyBookings && myBookings.length == 0">
+  <span>No pending bookings!</span>
+</div>
+
+<div *ngIf="showMyBookings && myBookings.length > 0">
+  <h3>My Bookings</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Booking Date</th>
+        <th>Realisation Date</th>
+        <th>Garden Type</th>
+        <th>Area</th>
+        <th>Requested Services</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of myBookings; let i = index">
+        <td>{{ booking.bookingDatetime | date }}</td>
+        <td>{{ booking.realisationDate | date }}</td>
+        <td>{{ booking.type }}</td>
+        <td>{{ booking.area }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let service of myServices[i]">{{ service }}</li>
+          </ul>
+        </td>
+        <td>
+          <input type="file" id="picture" name="picture" (change)="onFileSelected($event, i)" accept="image/jpeg, image/png">
+          <button *ngIf="pictures[i]" (click)="completeBooking(i)">Complete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  
+  

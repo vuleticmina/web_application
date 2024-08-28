@@ -1,0 +1,26 @@
+<div class="requests-section">
+    <h2>Pending Registration Requests</h2>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <div *ngIf="registrationRequests.length > 0; else noRequests">
+        <div *ngFor="let request of registrationRequests" class="request-card">
+            <p><strong>Username:</strong> {{ request.username }}</p>
+            <p><strong>Email:</strong> {{ request.email }}</p>
+            <div *ngIf="request.username==selectedRequestUsername" class="details-content">
+                <p><strong>First Name:</strong> {{ request.firstName }}</p>
+                <p><strong>Last Name:</strong> {{ request.lastName }}</p>
+                <p><strong>Gender:</strong> {{ request.gender }}</p>
+                <p><strong>Address:</strong> {{ request.address }}</p>
+                <p><strong>Phone:</strong> {{ request.phone }}</p>
+                <p><strong>Card Number:</strong> {{ request.creditCardNumber }}</p>
+            </div>
+            <div class="button-group">
+                <button (click)="toggleDetails(request.username)">Details</button>
+                <button (click)="acceptRequest(request)">Accept</button>
+                <button (click)="rejectRequest(request)">Reject</button>
+            </div>
+        </div>
+    </div>
+    <ng-template #noRequests>
+        <p>No pending requests.</p>
+    </ng-template>
+</div>

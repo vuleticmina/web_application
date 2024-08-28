@@ -1,0 +1,14 @@
+<div class="home">
+    <h2>Welcome, Administrator!</h2>
+    <ul class="menu">
+      <li><a (click)="navigateTo('pending-requests')">Registration Requests</a></li>
+      <li><a (click)="navigateTo('add-decorator')">Add Decorator</a></li>
+      <li><a (click)="navigateTo('add-company')">Add Company</a></li>
+      <li><a (click)="navigateTo('manage-users')">Manage Users</a></li>
+      <li><a (click)="navigateTo('manage-companies')">Manage Companies</a></li>
+    </ul>
+    <div class="content">
+      <router-outlet></router-outlet> 
+    </div>
+  </div>
+ 

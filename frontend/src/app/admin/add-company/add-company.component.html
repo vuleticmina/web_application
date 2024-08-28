@@ -1,0 +1,112 @@
+<div class="add-company">
+    <h2>Add New Company</h2>
+    <form class="form" #companyForm="ngForm">
+        <div>
+          <label for="name">Name:</label>
+          <input id="name" name="name" [(ngModel)]="company.name" required>
+        </div>
+      
+        <div>
+          <label for="address">Address:</label>
+          <input id="address" name="address" [(ngModel)]="company.address" required>
+        </div>
+      
+        <div class="service">
+          <label>Services:</label>
+          <div *ngFor="let service of services; let i = index">
+            <div>
+              <label for="serviceName{{ i }}">Service Name:</label>
+              <input id="serviceName{{ i }}" name="serviceName{{ i }}" [(ngModel)]="services[i].serviceName" required>
+      
+              <label for="description{{ i }}">Description:</label>
+              <input id="description{{ i }}" name="description{{ i }}" [(ngModel)]="services[i].description" required>
+      
+              <label for="price{{ i }}">Price:</label>
+              <input id="price{{ i }}" name="price{{ i }}" type="number" [(ngModel)]="services[i].price" required>
+
+              <button class="remove-button" (click)="removeService(i)">Remove Service</button>
+            </div>
+          </div>
+          <button (click)="addService()">Add Service</button>
+        </div>
+      
+      
+        <div>
+          <div>
+            <label for="mapLocation">Map Location:</label>
+            <input id="mapLocation" name="mapLocation" [(ngModel)]="company.mapLocation" readonly>
+          </div>
+          <app-map [allowSelection]="true" (locationSelected)="onLocationSelected($event)"></app-map>
+        </div>
+      
+        <div>
+          <label for="person">Contact Person:</label>
+          <input id="person" name="person" [(ngModel)]="contact.person" required>
+        </div>
+      
+        <div>
+          <label for="number">Number:</label>
+          <input id="number" name="number" [(ngModel)]="contact.phone" required>
+        </div>
+
+        <div class="vacation">
+          <label>Vacation:</label>
+          <div *ngFor="let vacation of vacations; let i = index">
+            <div>
+              
+              <label for="vacationStart{{ i }}">Start:</label>
+              <input type="date" name="vacationStart{{ i }}" id="vacationStart{{ i }}" [(ngModel)]="vacations[i].start" required>
+             
+      
+              <label for="vacationEnd{{ i }}">End:</label>
+              <input type="date" name="vacationEnd{{ i }}" id="vacationEnd{{ i }}" [(ngModel)]="vacations[i].end" required>
+             
+
+              <button class="remove-button" (click)="removeVacation(i)">Remove Vacation</button>
+            </div>
+          </div>
+          <button (click)="addVacation()">Add Vacation</button>
+        </div>
+
+        <div class="decorators">
+          <label for="decorator-select">Decorators:</label>
+          <div *ngFor="let decorator of decorators; let i = index" class="decorator-item">
+            <span>{{ decorator.username }}</span>
+            <button
+              class="remove-button"
+              (click)="removeDecorator(i)"
+              aria-label="Remove this decorator"
+            >
+              Remove Decorator
+            </button>
+          </div>
+        
+          <div *ngIf="unemployedDecorators.length != 0">
+            <label for="available-decorator">Select Decorator to Add:</label>
+            <select
+              id="available-decorator"
+              name="available-decorator"
+              [(ngModel)]="selectedDecorator"
+              aria-label="Select a decorator to add"
+            >
+              <option *ngFor="let unemployedDecorator of unemployedDecorators" [ngValue]="unemployedDecorator">
+                {{ unemployedDecorator.username }}
+              </option>
+            </select>
+          </div>
+          
+          <div *ngIf="unemployedDecorators.length === 0" class="no-options">
+            No available decorators.
+          </div>
+          
+          <button (click)="addDecorator()" aria-label="Add selected decorator">Add Decorator</button>
+        </div>
+      
+        <p class="error">{{registrationError}}</p>
+        <div *ngIf="registrationSuccess">
+          <span class="success-message">Success!</span>
+        </div>
+        <button (click)="addCompany()">Add</button>
+    </form> 
+
+</div>

@@ -1,0 +1,88 @@
+<form id="booking-form">
+    <div *ngIf="currentStep === 1">
+        <h3>Step1: Enter Details</h3>
+        <label for="datetime">Date And Time:</label>
+        <input type="datetime-local" id="datetime" name="datetime" [(ngModel)]="bookingReservation.realisationDate" required>
+        
+        <label for="area">Total Garden Area (sq. m):</label>
+        <input type="number" id="area" name="area" [(ngModel)]="bookingReservation.area" required>
+        
+        <label for="garden-type">Garden Type:</label>
+        <select id="garden-type" name="garden-type" [(ngModel)]="bookingReservation.type" required>
+            <option value="private">Private Garden</option>
+            <option value="restaurant">Restaurant Garden</option>
+        </select>
+        <p class="error">{{errorMessage}}</p>
+        <button (click)="nextStep()">Next</button>
+    </div>
+
+    <div *ngIf="currentStep === 2 && bookingReservation.type === 'private'">
+        <h3>Step 2: Private Garden Details</h3>
+        <label for="pool-area">Area for Pool (sq. m):</label>
+        <input type="number" id="pool-area" name="poolArea" [(ngModel)]="bookingReservation.poolArea">
+        
+        <label for="green-area">Area for Greenery (sq. m):</label>
+        <input type="number" id="green-area" name="greenArea" [(ngModel)]="bookingReservation.greenArea">
+        
+        <label for="furniture-area">Area for Furniture (sq. m):</label>
+        <input type="number" id="furniture-area" name="furnitureArea" [(ngModel)]="bookingReservation.furnitureArea">
+        
+        <label for="additional-requirements">Additional Requirements:</label>
+        <textarea id="additional-requirements" name="additionalRequirements" [(ngModel)]="bookingReservation.additionalRequirements"></textarea>
+        
+        <div *ngFor="let service of services">
+          <input 
+            type="checkbox" 
+            [value]="service.serviceName" 
+            (change)="onCheckboxChange($event, service.serviceName)" 
+          /> {{ service.serviceName }}
+        </div>
+
+        
+        <app-canvas-layout #canvasElement [type]="bookingReservation.type"></app-canvas-layout>
+        
+        
+        <p class="error">{{errorMessage}}</p>
+
+        <button (click)="goToPreviousStep()">Previous</button>
+        <button (click)="reserve()">Reserve</button>
+      </div>
+      
+      
+      <div *ngIf="currentStep === 2 && bookingReservation.type === 'restaurant'">
+        <h3>Step 2: Restaurant Garden Details</h3>
+        <label for="fountain-area">Area for Fountain (sq. m):</label>
+        <input type="number" id="fountain-area" name="fountainArea" [(ngModel)]="bookingReservation.fountainArea">
+        
+        <label for="greenery-area">Area for Greenery (sq. m):</label>
+        <input type="number" id="greenery-area" name="greeneryArea" [(ngModel)]="bookingReservation.greenArea">
+        
+        <label for="tables">Number of Tables:</label>
+        <input type="number" id="tables" name="tables" [(ngModel)]="bookingReservation.tablesNumber">
+
+        <label for="chairs">Number of Chairs:</label>
+        <input type="number" id="chairs" name="chairs" [(ngModel)]="bookingReservation.chairsNumber">
+        
+        <label for="additional-requirements">Additional Requirements:</label>
+        <textarea id="additional-requirements" name="additionalRequirements" [(ngModel)]="bookingReservation.additionalRequirements"></textarea>
+        
+        <div *ngFor="let service of services">
+          <input 
+            type="checkbox" 
+            [value]="service.serviceName" 
+            (change)="onCheckboxChange($event, service.serviceName)" 
+          /> {{ service.serviceName }}
+        </div>
+
+        
+        <app-canvas-layout #canvasElement [type]="bookingReservation.type"></app-canvas-layout>
+        
+
+        <p class="error">{{errorMessage}}</p>
+
+        <button (click)="goToPreviousStep()">Previous</button>
+        <button (click)="reserve()">Reserve</button>
+      </div>
+    </form>
+
+

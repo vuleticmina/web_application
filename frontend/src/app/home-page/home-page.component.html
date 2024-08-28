@@ -1,0 +1,86 @@
+<div class="info-container">
+    <h2>General Information</h2>
+    <ul>
+      <li>
+        <span class="label">Total Decorated Gardens:</span>
+        <span class="value">{{ info.totalGardens }}</span>
+      </li>
+      <li>
+        <span class="label">Total Registered Owners:</span>
+        <span class="value">{{ info.totalOwners }}</span>
+      </li>
+      <li>
+        <span class="label">Total Registered Decorators:</span>
+        <span class="value">{{ info.totalDecorators }}</span>
+      </li>
+      <li>
+        <span class="label">Jobs in Last 24 Hours:</span>
+        <span class="value">{{ info.reservationsLast24Hours }}</span>
+      </li>
+      <li>
+        <span class="label">Jobs in Last 7 Days:</span>
+        <span class="value">{{ info.reservationsLast7Days }}</span>
+      </li>
+      <li>
+        <span class="label">Jobs in Last 30 Days:</span>
+        <span class="value">{{ info.reservationsLast30Days }}</span>
+      </li>
+    </ul>
+</div>
+  
+<div *ngIf="companiesWithDecorators == []">
+    <span>No available companies!</span>
+</div>
+<div *ngIf="companiesWithDecorators != []" class="companies-container">
+    <h2>Companies</h2>
+
+    <div class="companies-search">
+        <input type="text" [(ngModel)]="filters.name" placeholder="Search by Name">
+        <input type="text" [(ngModel)]="filters.address" placeholder="Search by Address">
+        <button (click)="onSearch()">Search</button>
+    </div>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                <th (click)="onSort('name')">Name</th>
+                <th (click)="onSort('address')">Address</th>
+                <th (click)="onSort('averageRating')">Average Rating</th>
+                <th>Decorators</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let company of companiesWithDecorators">
+                <td>{{ company.company.name }}</td>
+                <td>{{ company.company.address }}</td>
+                <td>
+                    <div class="star-rating">
+                    <span class="star" [class.full]="company.averageRating >= 1">&#9733;</span>
+                    <span class="star" [class.full]="company.averageRating >= 2">&#9733;</span>
+                    <span class="star" [class.full]="company.averageRating >= 3">&#9733;</span>
+                    <span class="star" [class.full]="company.averageRating >= 4">&#9733;</span>
+                    <span class="star" [class.full]="company.averageRating >= 5">&#9733;</span>
+                    </div>
+                    {{ company.averageRating }}
+                </td>
+                <td>
+                    <ul>
+                        <li *ngFor="let decorator of company.decorators">{{ decorator.firstName }} {{ decorator.lastName }}</li>
+                    </ul>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="gallery-container">
+    <h2>Photo Gallery</h2>
+    <div class="gallery">
+      <div class="gallery-item" *ngFor="let photo of photos">
+        <img [src]="getImageUrl(photo)" alt="Gallery Photo">
+      </div>
+    </div>
+  </div>
+  

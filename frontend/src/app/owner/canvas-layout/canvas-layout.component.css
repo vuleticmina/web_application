@@ -1,0 +1,40 @@
+.canvas-container {
+    max-width: 100%;
+    display: flex;
+    align-items: flex-start; /* Adjust alignment as needed */
+    max-width: 100%;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    overflow: auto; /* Enable scrollbars if content overflows */
+    box-sizing: border-box;
+  }
+  
+  canvas {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(113, 158, 111);
+    display: block;
+  }
+  
+  .controls {
+    margin-left: 20px; 
+  }
+  
+  .controls button {
+    margin-bottom: 10px; 
+  }
+  
+  .controls input[type="number"] {
+    width: 80px; 
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .controls label {
+    margin-right: 5px; 
+  }
+  

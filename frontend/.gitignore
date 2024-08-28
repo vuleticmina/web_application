@@ -1,0 +1,20 @@
+# Node artifacts
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+# Angular artifacts
+/dist/
+/tmp/
+/e2e/
+
+# IDE artifacts
+.idea/
+.vscode/
+
+# Miscellaneous
+*.swp
+.DS_Store
+Thumbs.db
+.angular
