@@ -94,6 +94,17 @@ export class AddCompanyComponent {
       this.registrationError = "You have to add at least 2 decorators.";
       return;
     }
+
+    this.vacations.forEach(
+      vacation=>{
+        if(new Date(vacation.start) > new Date(vacation.end)){
+          this.registrationError = "Start of vacation should be before end.";
+          return;
+        }
+      }
+    )
+
+
     
     this.company.services = JSON.stringify(this.services);
     this.company.vacations = JSON.stringify(this.vacations);
@@ -126,7 +137,7 @@ export class AddCompanyComponent {
   }
 
   private validateForm(){
-    return this.company.name && this.company.contactPerson && this.company.address && this.company.mapLocation;
+    return this.company.name && this.contact.person && this.contact.phone && this.company.address && this.company.mapLocation;
   }
 
   registrationError: string = "";

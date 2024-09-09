@@ -54,7 +54,6 @@ CREATE TABLE arranging (
     additional_requirements TEXT,
     layout TEXT,
     options TEXT,
-    vacations TEXT,
     status VARCHAR(15) CHECK(status IN ('BOOKED', 'CANCELED', 'IN_PROCESS', 'COMPLETED', 'REJECTED')) DEFAULT 'BOOKED',
     servicing_status VARCHAR(15) CHECK(servicing_status IN ('BOOKED', 'ACCEPTED', 'REJECTED')) DEFAULT 'ACCEPTED',
     rating TINYINT CHECK (rating >= 1 AND rating <= 5),

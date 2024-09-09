@@ -13,8 +13,8 @@
     <button (click)="drawGreenery()">Add Greenery</button>
     <button *ngIf="type == 'private'" (click)="drawPool()">Add Pool</button>
     <button *ngIf="type == 'restaurant'" (click)="drawFountain()">Add Fountain</button>
-    <button *ngIf="type == 'restaurant'"  (click)="drawTable()">Add Table</button>
-    <button *ngIf="type == 'restaurant'"  (click)="drawChair()">Add Chair</button>
+    <button   (click)="drawTable()">Add Table</button>
+    <button   (click)="drawChair()">Add Chair</button>
     <button (click)="saveLayout()">Save Layout</button>
     <button (click)="loadLayout()">Load Layout</button>
     <input type="file" (change)="onFileSelected($event)"/>

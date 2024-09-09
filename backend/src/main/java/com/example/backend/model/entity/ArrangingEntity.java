@@ -66,9 +66,6 @@ public class ArrangingEntity {
     @Column(name = "options")
     private String options;
     @Basic
-    @Column(name = "vacations")
-    private String vacations;
-    @Basic
     @Column(name = "status")
     private String status;
     @Basic
@@ -231,14 +228,6 @@ public class ArrangingEntity {
         this.options = options;
     }
 
-    public String getVacations() {
-        return vacations;
-    }
-
-    public void setVacations(String vacations) {
-        this.vacations = vacations;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -292,12 +281,12 @@ public class ArrangingEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArrangingEntity arranging = (ArrangingEntity) o;
-        return jobId == arranging.jobId && ownerId == arranging.ownerId && companyId == arranging.companyId && Objects.equals(decoratorId, arranging.decoratorId) && Objects.equals(bookingDatetime, arranging.bookingDatetime) && Objects.equals(realisationDate, arranging.realisationDate) && Objects.equals(lastServicingDate, arranging.lastServicingDate) && Objects.equals(area, arranging.area) && Objects.equals(type, arranging.type) && Objects.equals(poolArea, arranging.poolArea) && Objects.equals(greenArea, arranging.greenArea) && Objects.equals(fountainArea, arranging.fountainArea) && Objects.equals(furnitureArea, arranging.furnitureArea) && Objects.equals(tablesNumber, arranging.tablesNumber) && Objects.equals(chairsNumber, arranging.chairsNumber) && Objects.equals(additionalRequirements, arranging.additionalRequirements) && Objects.equals(layout, arranging.layout) && Objects.equals(options, arranging.options) && Objects.equals(vacations, arranging.vacations) && Objects.equals(status, arranging.status) && Objects.equals(servicingStatus, arranging.servicingStatus) && Objects.equals(rating, arranging.rating) && Objects.equals(comment, arranging.comment) && Objects.equals(rejectionComment, arranging.rejectionComment) && Arrays.equals(picture, arranging.picture);
+        return jobId == arranging.jobId && ownerId == arranging.ownerId && companyId == arranging.companyId && Objects.equals(decoratorId, arranging.decoratorId) && Objects.equals(bookingDatetime, arranging.bookingDatetime) && Objects.equals(realisationDate, arranging.realisationDate) && Objects.equals(lastServicingDate, arranging.lastServicingDate) && Objects.equals(area, arranging.area) && Objects.equals(type, arranging.type) && Objects.equals(poolArea, arranging.poolArea) && Objects.equals(greenArea, arranging.greenArea) && Objects.equals(fountainArea, arranging.fountainArea) && Objects.equals(furnitureArea, arranging.furnitureArea) && Objects.equals(tablesNumber, arranging.tablesNumber) && Objects.equals(chairsNumber, arranging.chairsNumber) && Objects.equals(additionalRequirements, arranging.additionalRequirements) && Objects.equals(layout, arranging.layout) && Objects.equals(options, arranging.options) && Objects.equals(status, arranging.status) && Objects.equals(servicingStatus, arranging.servicingStatus) && Objects.equals(rating, arranging.rating) && Objects.equals(comment, arranging.comment) && Objects.equals(rejectionComment, arranging.rejectionComment) && Arrays.equals(picture, arranging.picture);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(jobId, ownerId, companyId, decoratorId, bookingDatetime, realisationDate, lastServicingDate, area, type, poolArea, greenArea, fountainArea, furnitureArea, tablesNumber, chairsNumber, additionalRequirements, layout, options, vacations, status, servicingStatus, rating, comment, rejectionComment);
+        int result = Objects.hash(jobId, ownerId, companyId, decoratorId, bookingDatetime, realisationDate, lastServicingDate, area, type, poolArea, greenArea, fountainArea, furnitureArea, tablesNumber, chairsNumber, additionalRequirements, layout, options, status, servicingStatus, rating, comment, rejectionComment);
         result = 31 * result + Arrays.hashCode(picture);
         return result;
     }

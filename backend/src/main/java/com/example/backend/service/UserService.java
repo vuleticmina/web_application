@@ -267,6 +267,10 @@ public class UserService {
         user.setCreditCardNumber(userRequest.getCreditCardNumber());
         user.setRegistrationStatus(UserRegistrationStatus.APPROVED.toString());
         user.setRole(UserType.DECORATOR.toString());
+        if(userRequest.getCompanyId() != -1) {
+            user.setCompanyId(userRequest.getCompanyId());
+        }
+
         if(user.getCompanyId() != null) user.setCompanyId(user.getCompanyId());
         try {
             user.setProfilePicture(userRequest.getProfilePicture().getBytes());
